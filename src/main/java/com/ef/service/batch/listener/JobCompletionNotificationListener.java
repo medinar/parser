@@ -18,7 +18,7 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
-    private final JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate; // TODO: Move this to Repositoy or DAO.
 
     @Autowired
     public JobCompletionNotificationListener(JdbcTemplate jdbcTemplate) {

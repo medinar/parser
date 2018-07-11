@@ -29,6 +29,10 @@ import org.springframework.core.io.ClassPathResource;
 @EnableBatchProcessing
 public class BatchConfiguration {
 
+    // Move to properties file
+    // Commit-interval
+    private final int chunkSize = 20000;
+
     @Autowired
     public JobBuilderFactory jobBuilderFactory;
 
@@ -82,7 +86,7 @@ public class BatchConfiguration {
     @Bean
     public Step step(JdbcBatchItemWriter<AccessLog> writer) {
         return stepBuilderFactory.get("step")
-                .<AccessLog, AccessLog>chunk(20000)
+                .<AccessLog, AccessLog>chunk(chunkSize)
                 .reader(reader())
                 .processor(processor())
                 .writer(writer)
