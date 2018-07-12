@@ -1,4 +1,4 @@
-package com.ef.service.batch.item;
+package com.ef.service.batch.item.processor;
 
 import com.ef.domain.AccessLog;
 import org.springframework.batch.item.ItemProcessor;

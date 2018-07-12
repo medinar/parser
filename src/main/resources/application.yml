@@ -10,6 +10,13 @@ spring:
 #        username: root
 #        password: Orcl.12345
 #        url: jdbc:mysql://localhost:3306/CIBUTUATADM
+    
+    # To prevent the batch job to start automatically.
+    # All configured jobs are run automatically by
+    # Spring Boot's auto configuration service
+    batch:
+        job:
+            enabled: false
 
 app:
     chunkSize: 20000
