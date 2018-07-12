@@ -1,0 +1,16 @@
+## YAML Template.
+---
+spring:
+    profiles: dev
+    datasource:
+        username: CIBUTUATADM
+        password: CIBUTUATADM
+        url: jdbc:oracle:thin:@bdoulxu209.bdo.com.ph:1521:CIBUTUAT
+        driver-class: oracle.jdbc.driver.OracleDriver
+#        username: root
+#        password: Orcl.12345
+#        url: jdbc:mysql://localhost:3306/CIBUTUATADM
+
+app:
+    chunkSize: 20000
+    delimeter: |

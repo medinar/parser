@@ -1,11 +1,14 @@
 package com.ef.domain;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Rommel Medina
  */
 public class AccessLog {
-    private String logDate;
+
+    private Timestamp logDate;
     private String ipAddress; // IP Address
     private String request; // Request Method
     private String status; // Http Status Code
@@ -14,7 +17,7 @@ public class AccessLog {
     public AccessLog() {
     }
 
-    public AccessLog(String logDate, String ipAddress, String request, String status, String userAgent) {
+    public AccessLog(Timestamp logDate, String ipAddress, String request, String status, String userAgent) {
         this.logDate = logDate;
         this.ipAddress = ipAddress;
         this.request = request;
@@ -22,11 +25,11 @@ public class AccessLog {
         this.userAgent = userAgent;
     }
 
-    public String getLogDate() {
+    public Timestamp getLogDate() {
         return logDate;
     }
 
-    public void setLogDate(String logDate) {
+    public void setLogDate(Timestamp logDate) {
         this.logDate = logDate;
     }
 

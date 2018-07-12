@@ -1,5 +1,7 @@
 package com.ef.service.batch.configuration;
 
+import com.ef.service.batch.mapper.AccessLogFieldSetMapper;
+import com.ef.config.AppConfig;
 import com.ef.domain.AccessLog;
 import com.ef.service.batch.item.AccessLogItemProcessor;
 import com.ef.service.batch.listener.JobCompletionNotificationListener;
@@ -15,7 +17,6 @@ import org.springframework.batch.item.database.JdbcBatchItemWriter;
 import org.springframework.batch.item.database.builder.JdbcBatchItemWriterBuilder;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,15 +30,17 @@ import org.springframework.core.io.ClassPathResource;
 @EnableBatchProcessing
 public class BatchConfiguration {
 
-    // Move to properties file
-    // Commit-interval
-    private final int chunkSize = 20000;
+    @Autowired
+    private AppConfig appConfig;
 
     @Autowired
-    public JobBuilderFactory jobBuilderFactory;
+    private JobBuilderFactory jobBuilderFactory;
 
     @Autowired
-    public StepBuilderFactory stepBuilderFactory;
+    private StepBuilderFactory stepBuilderFactory;
+
+    @Autowired
+    private AccessLogFieldSetMapper accessLogFieldSetMapper;
 
     // tag::readerwriterprocessor[]
     @Bean
@@ -48,12 +51,7 @@ public class BatchConfiguration {
                 .delimited()
                 .delimiter("|")
                 .names(new String[]{"logDate", "ipAddress", "request", "status", "userAgent"})
-                .fieldSetMapper(new BeanWrapperFieldSetMapper<AccessLog>() {
-                    {
-                        setTargetType(AccessLog.class);
-                    }
-
-                })
+                .fieldSetMapper(accessLogFieldSetMapper)
                 .build();
     }
 
@@ -75,7 +73,7 @@ public class BatchConfiguration {
     // tag::jobstep[]
     @Bean
     public Job importAccessLogJob(JobCompletionNotificationListener listener, Step step) {
-        return jobBuilderFactory.get("importAccessLogJob")
+        return jobBuilderFactory.get("IMPORT_ACCESS_LOG_JOB")
                 .incrementer(new RunIdIncrementer())
                 .listener(listener)
                 .flow(step)
@@ -86,11 +84,12 @@ public class BatchConfiguration {
     @Bean
     public Step step(JdbcBatchItemWriter<AccessLog> writer) {
         return stepBuilderFactory.get("step")
-                .<AccessLog, AccessLog>chunk(chunkSize)
+                .<AccessLog, AccessLog>chunk(appConfig.getChunkSize())
                 .reader(reader())
                 .processor(processor())
                 .writer(writer)
                 .build();
     }
     // end::jobstep[]
+
 }

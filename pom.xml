@@ -40,14 +40,34 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- Spring Batch -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-batch</artifactId>
         </dependency>
+        <!-- Spring Batch -->
+
+        <!-- Oracle JDBC Driver -->
         <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc7</artifactId>
+            <version>12.1.0</version>
+        </dependency>
+        <!-- Oracle JDBC Driver -->
+
+        <!-- MySQL Connector-J -->
+        <!--        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>-->
+        <!-- MySQL Connector-J --> 
+
+        <!--        <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
-        </dependency>
+        </dependency>-->
+
     </dependencies>
 
     <build>
