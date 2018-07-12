@@ -1,5 +1,6 @@
 package com.ef.config;
 
+import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,8 +12,10 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties("app")
 public class AppConfig {
 
-    private int chunkSize; // Commit-interval
-    private String delimeter;
+    private int chunkSize; // spring batch commit-interval
+    private String delimeter; // spring batch delimeter
+    private String insertAccessLogQuery;
+    private List<String> accessLogColumnNames;
 
     public int getChunkSize() {
         return chunkSize;
@@ -28,6 +31,22 @@ public class AppConfig {
 
     public void setDelimeter(String delimeter) {
         this.delimeter = delimeter;
+    }
+
+    public String getInsertAccessLogQuery() {
+        return insertAccessLogQuery;
+    }
+
+    public void setInsertAccessLogQuery(String insertAccessLogQuery) {
+        this.insertAccessLogQuery = insertAccessLogQuery;
+    }
+
+    public List<String> getAccessLogColumnNames() {
+        return accessLogColumnNames;
+    }
+
+    public void setAccessLogColumnNames(List<String> accessLogColumnNames) {
+        this.accessLogColumnNames = accessLogColumnNames;
     }
 
 }

@@ -13,4 +13,11 @@ spring:
 
 app:
     chunkSize: 20000
-    delimeter: |
+    delimeter: "|"
+    insertAccessLogQuery: INSERT INTO access_log (log_date, ip_address, request, status, user_agent) VALUES (:logDate, :ipAddress, :request, :status, :userAgent)
+    accessLogColumnNames:
+        - logDate
+        - ipAddress
+        - request
+        - status
+        - userAgent

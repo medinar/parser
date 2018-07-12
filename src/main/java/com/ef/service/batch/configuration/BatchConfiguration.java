@@ -1,11 +1,13 @@
 package com.ef.service.batch.configuration;
 
-import com.ef.service.batch.mapper.AccessLogFieldSetMapper;
 import com.ef.config.AppConfig;
 import com.ef.domain.AccessLog;
 import com.ef.service.batch.item.AccessLogItemProcessor;
 import com.ef.service.batch.listener.JobCompletionNotificationListener;
+import com.ef.service.batch.mapper.AccessLogFieldSetMapper;
 import javax.sql.DataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -30,6 +32,8 @@ import org.springframework.core.io.ClassPathResource;
 @EnableBatchProcessing
 public class BatchConfiguration {
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+
     @Autowired
     private AppConfig appConfig;
 
@@ -49,8 +53,13 @@ public class BatchConfiguration {
                 .name("accessLogItemReader")
                 .resource(new ClassPathResource("access.log")) // TODO: Move the input file outside the application.
                 .delimited()
-                .delimiter("|")
-                .names(new String[]{"logDate", "ipAddress", "request", "status", "userAgent"})
+                .delimiter(appConfig.getDelimeter())
+                .names(appConfig
+                        .getAccessLogColumnNames()
+                        .toArray(new String[appConfig
+                                .getAccessLogColumnNames().size()]
+                        )
+                )
                 .fieldSetMapper(accessLogFieldSetMapper)
                 .build();
     }
@@ -64,7 +73,7 @@ public class BatchConfiguration {
     public JdbcBatchItemWriter<AccessLog> writer(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<AccessLog>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql("INSERT INTO access_log (log_date, ip_address, request, status, user_agent) VALUES (:logDate, :ipAddress, :request, :status, :userAgent)")
+                .sql(appConfig.getInsertAccessLogQuery())
                 .dataSource(dataSource)
                 .build();
     }

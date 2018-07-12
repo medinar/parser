@@ -8,8 +8,8 @@ import java.util.List;
  */
 public interface AccessLogService {
 
-    public abstract List<String> findIps(
-            String dateString,
+    public abstract List<String> findIpAddresses(
+            String startDateString,
             String duration,
             int threshold
     );
