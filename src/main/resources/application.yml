@@ -28,5 +28,6 @@ app:
         - request
         - status
         - userAgent
-    hourlyThreshold: 200
-    dailyThreshold: 500
+    threshold:
+        hourly: 200
+        daily: 500

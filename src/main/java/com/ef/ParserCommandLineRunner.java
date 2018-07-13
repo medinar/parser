@@ -70,8 +70,11 @@ public class ParserCommandLineRunner implements CommandLineRunner {
         int threshold = 0;
         // If the atleast the date and the duration is present,
         // call getRequests(...) method.
+        // Validate duration. Duration should either be "hourly" or "daily" only.
         if (isNotBlank(argMap.get(ARG_START_DATE))
-                && isNotBlank(argMap.get(ARG_DURATION))) {
+                && isNotBlank(argMap.get(ARG_DURATION))
+                && (equalsIgnoreCase(argMap.get(ARG_DURATION), DURATION_HOURLY)
+                || equalsIgnoreCase(argMap.get(ARG_DURATION), DURATION_DAILY))) {
 
             // Check if the threshold. If present, pass it to the accessLogService.
             // Otherwise, check the passed duration value.
@@ -82,13 +85,9 @@ public class ParserCommandLineRunner implements CommandLineRunner {
                 }
             }
             else {
-                if (equalsIgnoreCase(argMap.get(ARG_DURATION), DURATION_HOURLY)) {
-                    threshold = config.getHourlyThreshold();
-                }
-                else if (equalsIgnoreCase(argMap.get(ARG_DURATION), DURATION_DAILY)) {
-                    threshold = config.getDailyThreshold();
-                }
-                logger.info("Threshold is blank.");
+                threshold = config
+                        .getThreshold()
+                        .get(argMap.get(ARG_DURATION).toLowerCase());
             }
             accessLogService.getRequests(
                     argMap.get(ARG_START_DATE),

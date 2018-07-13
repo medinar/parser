@@ -1,6 +1,8 @@
 package com.ef.config;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,8 +18,7 @@ public class AppConfig {
     private String delimeter; // spring batch delimeter
     private String insertAccessLogQuery;
     private List<String> accessLogColumnNames;
-    private int hourlyThreshold;
-    private int dailyThreshold;
+    private final Map<String, Integer> threshold = new HashMap<>();
 
     public int getChunkSize() {
         return chunkSize;
@@ -51,20 +52,8 @@ public class AppConfig {
         this.accessLogColumnNames = accessLogColumnNames;
     }
 
-    public int getHourlyThreshold() {
-        return hourlyThreshold;
-    }
-
-    public void setHourlyThreshold(int hourlyThreshold) {
-        this.hourlyThreshold = hourlyThreshold;
-    }
-
-    public int getDailyThreshold() {
-        return dailyThreshold;
-    }
-
-    public void setDailyThreshold(int dailyThreshold) {
-        this.dailyThreshold = dailyThreshold;
+    public Map<String, Integer> getThreshold() {
+        return threshold;
     }
 
 }
