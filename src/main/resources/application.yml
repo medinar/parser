@@ -23,6 +23,7 @@ app:
     delimeter: "|"
     insertAccessLogQuery: INSERT INTO access_log (log_date, ip_address, request, status, user_agent) VALUES (:logDate, :ipAddress, :request, :status, :userAgent)
     findBlockedIpAddressesQuery: select ip_address from (select ip_address, count(0) log_count from access_log where log_date between TO_TIMESTAMP(:start_date, 'YYYY-MM-DD.HH24:MI:SS') and TO_TIMESTAMP(:start_date, 'YYYY-MM-DD.HH24:MI:SS') + numToDSInterval(1, :log_duration) group by ip_address) where log_count > :threshold
+    insertBlacklistQuery: INSERT INTO blacklist (ip_address, reason) VALUES (:ip_address, :reason)
     accessLogColumnNames:
         - logDate
         - ipAddress

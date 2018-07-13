@@ -1,11 +1,14 @@
 package com.ef;
 
 import com.ef.config.AppConfig;
+import com.ef.domain.Blacklist;
 import com.ef.service.accesslog.AccessLogService;
+import com.ef.service.accesslog.BlacklistService;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
 import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -38,6 +41,9 @@ public class ParserCommandLineRunner implements CommandLineRunner {
 
     @Autowired
     private AccessLogService accessLogService;
+
+    @Autowired
+    private BlacklistService blacklistService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -93,10 +99,14 @@ public class ParserCommandLineRunner implements CommandLineRunner {
 
             logger.info("ipAddresses -> {}", ipAddresses.toString());
             for (String ipAddress : ipAddresses) {
-                logger.info("{} has {} or more requests.",
-                            ipAddress,
-                            threshold
-                );
+                blacklistService.save(
+                        new Blacklist(
+                                ipAddress,
+                                StringUtils.join(ipAddress,
+                                                 " has ",
+                                                 threshold,
+                                                 " or more requests.")
+                        ));
             }
             // 192.168.11.231 has 200 or more requests between 2017-01-01.15:00:00 and 2017-01-01.15:59:59
         }
