@@ -12,7 +12,7 @@
             <spring-boot.run.jvmArguments>-noverify -XX:TieredStopAtLevel=1</spring-boot.run.jvmArguments>
             <spring-boot.run.mainClass>com.example.BasicApplication</spring-boot.run.mainClass>
             <Env.SPRING_OUTPUT_ANSI_ENABLED>always</Env.SPRING_OUTPUT_ANSI_ENABLED>
-            <spring-boot.run.arguments>--accesslog=C:\\Users\\a012001734\\NetBeansProjects\\wallet\\parser\\src\\main\\resources\\access.log,--startDate=2017-01-01.15:00:00,--duration=hourly,--threshold=200</spring-boot.run.arguments>
+            <spring-boot.run.arguments>--accesslog=C:\\Users\\a012001734\\NetBeansProjects\\wallet\\parser\\src\\main\\resources\\access.log,--startDate=2017-01-01.00:00:00,--duration=hourly,--threshold=200</spring-boot.run.arguments>
         </properties>
     </action>
     <action>

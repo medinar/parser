@@ -110,8 +110,10 @@ public class BatchConfiguration {
 
     // tag::jobstep[]
     @Bean
-    public Job importAccessLogJob(JobCompletionNotificationListener listener, Step step) {
-        return jobBuilderFactory.get("IMPORT_ACCESS_LOG_JOB")
+    public Job parseAndSaveAccessLogJob(
+            JobCompletionNotificationListener listener,
+            Step step) {
+        return jobBuilderFactory.get("PARSE_AND_SAVE_ACCESS_LOG_JOB")
                 .incrementer(new RunIdIncrementer())
                 .listener(listener)
                 .flow(step)

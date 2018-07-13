@@ -1,9 +1,20 @@
 package com.ef.service.accesslog;
 
+import com.ef.dao.AccessLogDao;
+import com.ef.exception.AccessLogServiceException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParametersBuilder;
+import org.springframework.batch.core.JobParametersInvalidException;
+import org.springframework.batch.core.launch.JobLauncher;
+import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
+import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
+import org.springframework.batch.core.repository.JobRestartException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,13 +26,59 @@ public class AccessLogServiceImpl implements AccessLogService {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
+    @Autowired
+    JobLauncher jobLauncher;
+
+    @Autowired
+    Job parseAndSaveAccessLogJob;
+
+    @Autowired
+    AccessLogDao accessLogDao;
+
     @Override
-    public List<String> getRequests(String startDateString, String duration, int threshold) {
-        logger.info(
-                "startDateString -> {}, duration -> {}, threshold -> {}",
-                startDateString, duration, threshold
-        );
-        return new ArrayList<>();
+    public List<String> getIpAddresses(
+            String startDateString,
+            String duration,
+            int threshold) throws AccessLogServiceException {
+
+        List<String> ipAddresses = new ArrayList<>();
+        try {
+            logger.info(
+                    "startDateString -> {}, duration -> {}, threshold -> {}",
+                    startDateString, duration, threshold
+            );
+
+            ipAddresses = accessLogDao.findIpAddresses(
+                    startDateString,
+                    duration,
+                    threshold
+            );
+        }
+        catch (SQLException ex) {
+            logger.error(ex.getMessage(), ex);
+            throw new AccessLogServiceException(ex);
+        }
+
+        return ipAddresses;
+    }
+
+    @Override
+    public void parseAndSave(String path) throws AccessLogServiceException {
+        try {
+            jobLauncher.run(parseAndSaveAccessLogJob, new JobParametersBuilder()
+                            .addString("path", path)
+                            .addLong("time", System.currentTimeMillis())
+                            .toJobParameters()
+            );
+        }
+        catch (JobExecutionAlreadyRunningException
+                | JobInstanceAlreadyCompleteException
+                | JobParametersInvalidException
+                | JobRestartException ex) {
+
+            logger.error(ex.getMessage(), ex);
+            throw new AccessLogServiceException(ex);
+        }
     }
 
 }

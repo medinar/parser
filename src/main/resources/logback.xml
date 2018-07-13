@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true" scan="true" scanPeriod="30 seconds">
     <property name="APP_NAME" value="parser" />
-    <property name="LOG_PATH" value="/log" />
+    <property name="LOG_PATH" value="log" />
     <timestamp key="timestamp-by-second" datePattern="yyyyMMdd'T'HHmmss"/>
 
     <appender name="Console-Appender" class="ch.qos.logback.core.ConsoleAppender">

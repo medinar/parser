@@ -1,5 +1,6 @@
 package com.ef.service.accesslog;
 
+import com.ef.exception.AccessLogServiceException;
 import java.util.List;
 
 /**
@@ -16,11 +17,20 @@ public interface AccessLogService {
      * @param duration
      * @param threshold
      * @return
+     * @throws com.ef.exception.AccessLogServiceException
      */
-    public abstract List<String> getRequests(
+    public abstract List<String> getIpAddresses(
             String startDateString,
             String duration,
             int threshold
-    );
+    ) throws AccessLogServiceException;
+
+    /**
+     * Parses the given file path and save it to database.
+     *
+     * @param path
+     * @throws com.ef.exception.AccessLogServiceException
+     */
+    public abstract void parseAndSave(String path) throws AccessLogServiceException;
 
 }

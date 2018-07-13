@@ -2,9 +2,9 @@ package com.ef;
 
 import com.ef.config.AppConfig;
 import com.ef.service.accesslog.AccessLogService;
-import com.ef.service.accesslog.BatchJobService;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
@@ -39,9 +39,6 @@ public class ParserCommandLineRunner implements CommandLineRunner {
     @Autowired
     private AccessLogService accessLogService;
 
-    @Autowired
-    private BatchJobService batchJobService;
-
     @Override
     public void run(String... args) throws Exception {
 
@@ -64,7 +61,7 @@ public class ParserCommandLineRunner implements CommandLineRunner {
 
         // If accesslog parameter is present, parse and save the data to database.
         if (isNotBlank(argMap.get(ARG_ACCESS_LOG))) {
-            batchJobService.launch(argMap.get(ARG_ACCESS_LOG));
+//            accessLogService.parseAndSave(argMap.get(ARG_ACCESS_LOG));
         }
 
         int threshold = 0;
@@ -89,10 +86,19 @@ public class ParserCommandLineRunner implements CommandLineRunner {
                         .getThreshold()
                         .get(argMap.get(ARG_DURATION).toLowerCase());
             }
-            accessLogService.getRequests(
+            List<String> ipAddresses = accessLogService.getIpAddresses(
                     argMap.get(ARG_START_DATE),
                     argMap.get(ARG_DURATION),
                     threshold);
+
+            logger.info("ipAddresses -> {}", ipAddresses.toString());
+            for (String ipAddress : ipAddresses) {
+                logger.info("{} has {} or more requests.",
+                            ipAddress,
+                            threshold
+                );
+            }
+            // 192.168.11.231 has 200 or more requests between 2017-01-01.15:00:00 and 2017-01-01.15:59:59
         }
         else {
             logger.info("Invalid arguments. Actual: "
