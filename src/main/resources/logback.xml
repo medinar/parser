@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="true" scan="true" scanPeriod="30 seconds">
+    <property name="APP_NAME" value="parser" />
+    <property name="LOG_PATH" value="/log" />
     <timestamp key="timestamp-by-second" datePattern="yyyyMMdd'T'HHmmss"/>
 
     <appender name="Console-Appender" class="ch.qos.logback.core.ConsoleAppender">
@@ -9,8 +11,21 @@
         </layout>
     </appender>
 
+    <appender name="RollingFile-Appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/${APP_NAME}.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</Pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/archive/${APP_NAME}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>3MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
     <root level="info">
         <appender-ref ref="Console-Appender" />
+        <appender-ref ref="RollingFile-Appender" />
     </root>
 
 </configuration>

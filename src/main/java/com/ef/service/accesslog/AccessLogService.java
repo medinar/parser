@@ -8,7 +8,16 @@ import java.util.List;
  */
 public interface AccessLogService {
 
-    public abstract List<String> findIpAddresses(
+    /**
+     * Get all requests that reached the given threshold for the given date
+     * within the given duration.
+     *
+     * @param startDateString
+     * @param duration
+     * @param threshold
+     * @return
+     */
+    public abstract List<String> getRequests(
             String startDateString,
             String duration,
             int threshold

@@ -16,7 +16,7 @@ public class AccessLogServiceImpl implements AccessLogService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
     @Override
-    public List<String> findIpAddresses(String startDateString, String duration, int threshold) {
+    public List<String> getRequests(String startDateString, String duration, int threshold) {
         logger.info(
                 "startDateString -> {}, duration -> {}, threshold -> {}",
                 startDateString, duration, threshold

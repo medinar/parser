@@ -16,6 +16,8 @@ public class AppConfig {
     private String delimeter; // spring batch delimeter
     private String insertAccessLogQuery;
     private List<String> accessLogColumnNames;
+    private int hourlyThreshold;
+    private int dailyThreshold;
 
     public int getChunkSize() {
         return chunkSize;
@@ -47,6 +49,22 @@ public class AppConfig {
 
     public void setAccessLogColumnNames(List<String> accessLogColumnNames) {
         this.accessLogColumnNames = accessLogColumnNames;
+    }
+
+    public int getHourlyThreshold() {
+        return hourlyThreshold;
+    }
+
+    public void setHourlyThreshold(int hourlyThreshold) {
+        this.hourlyThreshold = hourlyThreshold;
+    }
+
+    public int getDailyThreshold() {
+        return dailyThreshold;
+    }
+
+    public void setDailyThreshold(int dailyThreshold) {
+        this.dailyThreshold = dailyThreshold;
     }
 
 }
