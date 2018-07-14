@@ -51,18 +51,18 @@
         <!-- Spring Batch -->
 
         <!-- Oracle JDBC Driver -->
-        <dependency>
+<!--        <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc7</artifactId>
             <version>12.1.0</version>
-        </dependency>
+        </dependency>-->
         <!-- Oracle JDBC Driver -->
 
         <!-- MySQL Connector-J -->
-        <!--        <dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-        </dependency>-->
+        </dependency>
         <!-- MySQL Connector-J --> 
 
         <!--        <dependency>

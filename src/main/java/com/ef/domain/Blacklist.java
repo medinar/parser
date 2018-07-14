@@ -2,6 +2,8 @@ package com.ef.domain;
 
 /**
  *
+ * TODO: Consider renaming this to BlacklistedIp
+ *
  * @author Rommel Medina
  */
 public class Blacklist {

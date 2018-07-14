@@ -2,6 +2,7 @@ package com.ef.service.accesslog;
 
 import com.ef.domain.Blacklist;
 import com.ef.exception.BlacklistServiceException;
+import java.util.List;
 
 /**
  *
@@ -10,5 +11,7 @@ import com.ef.exception.BlacklistServiceException;
 public interface BlacklistService {
 
     public void save(Blacklist blacklist) throws BlacklistServiceException;
+
+    public void saveAll(List<Blacklist> blacklistedIps) throws BlacklistServiceException;
 
 }

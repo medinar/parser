@@ -4,6 +4,7 @@ import com.ef.config.AppConfig;
 import com.ef.domain.Blacklist;
 import com.ef.service.accesslog.AccessLogService;
 import com.ef.service.accesslog.BlacklistService;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +27,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ParserCommandLineRunner implements CommandLineRunner {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+    private final Logger logger
+            = LoggerFactory.getLogger(this.getClass().getName());
 
     @Autowired
     AppConfig config;
@@ -97,25 +99,28 @@ public class ParserCommandLineRunner implements CommandLineRunner {
                     argMap.get(ARG_DURATION),
                     threshold);
 
-            logger.info("ipAddresses -> {}", ipAddresses.toString());
+            // TODO: Research on how to add hour or day on the given date.
+            List<Blacklist> blacklistedIps = new ArrayList<>();
             for (String ipAddress : ipAddresses) {
-                blacklistService.save(
-                        new Blacklist(
-                                ipAddress,
-                                StringUtils.join(ipAddress,
-                                                 " has ",
-                                                 threshold,
-                                                 " or more requests.")
-                        ));
+                blacklistedIps.add(new Blacklist(
+                        ipAddress,
+                        StringUtils.join(ipAddress,
+                                " has ",
+                                threshold,
+                                " or more requests.")
+                ));
             }
+            // Batch inserts all blacklisted ip addresses.
+            blacklistService.saveAll(blacklistedIps);
+
             // 192.168.11.231 has 200 or more requests between 2017-01-01.15:00:00 and 2017-01-01.15:59:59
         }
         else {
             logger.info("Invalid arguments. Actual: "
                     + "{}, Expected: Atleast {} and {} is required.",
-                        Arrays.toString(args),
-                        ARG_START_DATE,
-                        ARG_DURATION
+                    Arrays.toString(args),
+                    ARG_START_DATE,
+                    ARG_DURATION
             );
         }
     }

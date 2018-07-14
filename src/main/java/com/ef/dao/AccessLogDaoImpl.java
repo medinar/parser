@@ -18,10 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AccessLogDaoImpl extends NamedParameterJdbcDaoSupport implements AccessLogDao {
 
-    private static final String PARAM_START_DATE = "start_date";
-    private static final String PARAM_LOG_DURATION = "log_duration";
-    private static final String PARAM_THRESHOLD = "threshold";
-
     @Autowired
     AppConfig config;
 

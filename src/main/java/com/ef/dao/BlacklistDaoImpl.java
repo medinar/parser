@@ -3,10 +3,13 @@ package com.ef.dao;
 import com.ef.config.AppConfig;
 import com.ef.domain.Blacklist;
 import java.sql.SQLException;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -31,11 +34,19 @@ public class BlacklistDaoImpl extends NamedParameterJdbcDaoSupport implements Bl
     }
 
     @Override
-    public void save(Blacklist blacklist) throws SQLException {
-        getJdbcTemplate().update(config.getInsertBlacklistQuery(), new Object[]{
-            blacklist.getIpAddress(),
-            blacklist.getReason()
-        });
+    public int save(Blacklist blacklist) throws SQLException {
+        return getNamedParameterJdbcTemplate().update(
+                config.getInsertBlacklistQuery(),
+                new BeanPropertySqlParameterSource(blacklist)
+        );
+    }
+
+    @Override
+    public int[] saveAll(List<Blacklist> blacklistedIps) throws SQLException {
+        return getNamedParameterJdbcTemplate().batchUpdate(
+                config.getInsertBlacklistQuery(),
+                SqlParameterSourceUtils.createBatch(blacklistedIps)
+        );
     }
 
 }
