@@ -4,6 +4,8 @@ import com.ef.config.AppConfig;
 import com.ef.domain.BlockedIp;
 import com.ef.service.accesslog.AccessLogService;
 import com.ef.service.accesslog.BlockedIpService;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -59,7 +61,7 @@ public class ParserCommandLineRunner implements CommandLineRunner {
                 argMap.put(ARG_START_DATE, arg.split(ARG_SEP)[1]);
             }
             else if (containsIgnoreCase(arg, ARG_DURATION)) {
-                argMap.put(ARG_DURATION, arg.split(ARG_SEP)[1]);
+                argMap.put(ARG_DURATION, arg.split(ARG_SEP)[1].toLowerCase());
             }
             else if (containsIgnoreCase(arg, ARG_THRESHOLD)) {
                 argMap.put(ARG_THRESHOLD, arg.split(ARG_SEP)[1]);
@@ -68,7 +70,7 @@ public class ParserCommandLineRunner implements CommandLineRunner {
 
         // If accesslog parameter is present, parse and save the data to database.
         if (isNotBlank(argMap.get(ARG_ACCESS_LOG))) {
-            accessLogService.parseAndSave(argMap.get(ARG_ACCESS_LOG));
+//            accessLogService.parseAndSave(argMap.get(ARG_ACCESS_LOG));
         }
 
         int threshold = 0;
@@ -80,8 +82,9 @@ public class ParserCommandLineRunner implements CommandLineRunner {
                 && (equalsIgnoreCase(argMap.get(ARG_DURATION), DURATION_HOURLY)
                 || equalsIgnoreCase(argMap.get(ARG_DURATION), DURATION_DAILY))) {
 
-            // Check if the threshold. If present, pass it to the accessLogService.
-            // Otherwise, check the passed duration value.
+            // If value for threshold is present,
+            // pass it to the accessLogService as parameter.
+            // Otherwise, set its value based on the passed duration value.
             // Set the value of threshold to 200 for hourly and 500 for daily.
             if (isNotBlank(argMap.get(ARG_THRESHOLD))) {
                 if (isNumeric(argMap.get(ARG_THRESHOLD))) {
@@ -91,16 +94,31 @@ public class ParserCommandLineRunner implements CommandLineRunner {
             else {
                 threshold = config
                         .getThreshold()
-                        .get(argMap.get(ARG_DURATION).toLowerCase());
+                        .get(argMap.get(ARG_DURATION));
             }
+
+            // Parse the date string to LocalDateTime object.
+            DateTimeFormatter formatter
+                    = DateTimeFormatter.ofPattern(config.getDatePattern());
+            LocalDateTime ldtStartDate = LocalDateTime.parse(
+                    argMap.get(ARG_START_DATE),
+                    formatter
+            );
+
+            // Add the number of hours according to duration.
+            long hours = config.getDuration().get(argMap.get(ARG_DURATION));
+            String endDate = ldtStartDate.plusHours(hours).format(formatter);
+
+            // Retrieve ip addresses for the given criteria.
             List<String> blockedIpAddresses = accessLogService
                     .getBlockedIpAddresses(
                             argMap.get(ARG_START_DATE),
-                            argMap.get(ARG_DURATION),
+                            endDate,
                             threshold
                     );
 
-            // TODO: Research on how to add hour or day on the given date.
+            // Save the blocked ip address with the reason why it was blocked
+            // to BlockedIp object.
             List<BlockedIp> blockedIps = new ArrayList<>();
             for (String ipAddress : blockedIpAddresses) {
                 blockedIps.add(new BlockedIp(
@@ -109,14 +127,13 @@ public class ParserCommandLineRunner implements CommandLineRunner {
                                 ipAddress,
                                 threshold,
                                 argMap.get(ARG_START_DATE),
-                                argMap.get(ARG_START_DATE)
+                                endDate
                         )
                 ));
             }
-            // Batch inserts all blocked ip addresses.
-            blockedIpService.saveAll(blockedIps);
 
-            // 192.168.11.231 has 200 or more requests between 2017-01-01.15:00:00 and 2017-01-01.15:59:59
+            // Batch insert all blocked ip addresses.
+            blockedIpService.saveAll(blockedIps);
         }
         else {
             logger.info("Invalid arguments. Actual: "

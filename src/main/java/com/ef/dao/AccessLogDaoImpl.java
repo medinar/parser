@@ -34,13 +34,13 @@ public class AccessLogDaoImpl extends NamedParameterJdbcDaoSupport implements Ac
 
     @Override
     public List<String> findIpAddresses(
-            String startDateString,
-            String duration,
+            String startDate,
+            String endDate,
             int threshold) throws SQLException {
 
         SqlParameterSource sqlParameterSource = new MapSqlParameterSource()
-                .addValue(PARAM_START_DATE, startDateString)
-                .addValue(PARAM_LOG_DURATION, config.getDuration().get(duration))
+                .addValue(PARAM_START_DATE, startDate)
+                .addValue(PARAM_END_DATE, endDate)
                 .addValue(PARAM_THRESHOLD, threshold);
 
         return getNamedParameterJdbcTemplate()

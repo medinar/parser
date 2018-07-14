@@ -3,10 +3,6 @@
 spring:
     profiles: dev
     datasource:
-#        username: CIBUTUATADM
-#        password: CIBUTUATADM
-#        url: jdbc:oracle:thin:@bdoulxu209.bdo.com.ph:1521:CIBUTUAT
-#        driver-class: oracle.jdbc.driver.OracleDriver
         username: root
         password: Orcl.12345
 #        password: root
@@ -20,7 +16,7 @@ spring:
             enabled: false
 
 app:
-    chunkSize: 20000
+    chunkSize: 100000
     delimeter: "|"
     insertAccessLogQuery: 
         INSERT INTO access_log (log_date, ip_address, request, status, user_agent) 
@@ -31,10 +27,9 @@ app:
             from access_log 
             where log_date 
                 between STR_TO_DATE(:start_date, '%Y-%m-%d.%H:%i:%s') 
-                and timestampadd(SQL_TSI_DAY, 1, STR_TO_DATE(:start_date, '%Y-%m-%d.%H:%i:%s')) 
+                and STR_TO_DATE(:end_date, '%Y-%m-%d.%H:%i:%s') 
             group by ip_address) a 
         where log_count > :threshold
-    # findBlockedIpAddressesQuery: select ip_address from (select ip_address, count(0) log_count from access_log where log_date between TO_TIMESTAMP(:start_date, 'YYYY-MM-DD.HH24:MI:SS') and TO_TIMESTAMP(:start_date, 'YYYY-MM-DD.HH24:MI:SS') + numToDSInterval(1, :log_duration) group by ip_address) where log_count > :threshold
     insertBlockedIpQuery: 
         INSERT INTO blocked_ip (ip_address, reason) 
         VALUES (:ipAddress, :reason)
@@ -48,5 +43,6 @@ app:
         hourly: 200
         daily: 500
     duration:
-        hourly: hour
-        daily: day
+        hourly: 1
+        daily: 24
+    datePattern: yyyy-MM-dd.HH:mm:ss

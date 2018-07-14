@@ -15,15 +15,15 @@ public interface AccessLogService {
     /**
      * Get IP addresses that reached the maximum number of requests allowed.
      *
-     * @param startDateString
-     * @param duration
+     * @param startDate
+     * @param endDate
      * @param threshold
      * @return
      * @throws com.ef.exception.AccessLogServiceException
      */
     public abstract List<String> getBlockedIpAddresses(
-            String startDateString,
-            String duration,
+            String startDate,
+            String endDate,
             int threshold
     ) throws AccessLogServiceException;
 

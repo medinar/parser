@@ -20,8 +20,9 @@ public class AppConfig {
     private String findBlockedIpAddressesQuery;
     private String insertBlockedIpQuery;
     private List<String> accessLogColumnNames;
-    private final Map<String, String> duration = new HashMap<>();
+    private final Map<String, Long> duration = new HashMap<>();
     private final Map<String, Integer> threshold = new HashMap<>();
+    private String datePattern;
 
     public int getChunkSize() {
         return chunkSize;
@@ -59,7 +60,7 @@ public class AppConfig {
         return threshold;
     }
 
-    public Map<String, String> getDuration() {
+    public Map<String, Long> getDuration() {
         return duration;
     }
 
@@ -77,6 +78,14 @@ public class AppConfig {
 
     public void setInsertBlockedIpQuery(String insertBlockedIpQuery) {
         this.insertBlockedIpQuery = insertBlockedIpQuery;
+    }
+
+    public String getDatePattern() {
+        return datePattern;
+    }
+
+    public void setDatePattern(String datePattern) {
+        this.datePattern = datePattern;
     }
 
 }

@@ -38,20 +38,20 @@ public class AccessLogServiceImpl implements AccessLogService {
 
     @Override
     public List<String> getBlockedIpAddresses(
-            String startDateString,
-            String duration,
+            String startDate,
+            String endDate,
             int threshold) throws AccessLogServiceException {
 
         List<String> ipAddresses = new ArrayList<>();
         try {
             logger.info(
-                    "getBlockedIpAddresses(startDateString={}, duration={}, threshold={})",
-                    startDateString, duration, threshold
+                    "getBlockedIpAddresses(startDate={}, endDate={}, threshold={})",
+                    startDate, endDate, threshold
             );
 
             ipAddresses = accessLogDao.findIpAddresses(
-                    startDateString,
-                    duration,
+                    startDate,
+                    endDate,
                     threshold
             );
         }

@@ -10,12 +10,12 @@ import java.util.List;
 public interface AccessLogDao {
 
     static final String PARAM_START_DATE = "start_date";
-    static final String PARAM_LOG_DURATION = "log_duration";
+    static final String PARAM_END_DATE = "end_date";
     static final String PARAM_THRESHOLD = "threshold";
 
     public abstract List<String> findIpAddresses(
-            String startDateString,
-            String duration,
+            String startDate,
+            String endDate,
             int threshold) throws SQLException;
 
 }
