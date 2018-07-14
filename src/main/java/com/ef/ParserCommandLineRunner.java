@@ -70,7 +70,7 @@ public class ParserCommandLineRunner implements CommandLineRunner {
 
         // If accesslog parameter is present, parse and save the data to database.
         if (isNotBlank(argMap.get(ARG_ACCESS_LOG))) {
-//            accessLogService.parseAndSave(argMap.get(ARG_ACCESS_LOG));
+            accessLogService.parseAndSave(argMap.get(ARG_ACCESS_LOG));
         }
 
         int threshold = 0;
@@ -121,15 +121,15 @@ public class ParserCommandLineRunner implements CommandLineRunner {
             // to BlockedIp object.
             List<BlockedIp> blockedIps = new ArrayList<>();
             for (String ipAddress : blockedIpAddresses) {
-                blockedIps.add(new BlockedIp(
+                String reason = String.format(
+                        "%s has %s or more requests between %s and %s",
                         ipAddress,
-                        String.format("%s has %s or more requests between %s and %s",
-                                ipAddress,
-                                threshold,
-                                argMap.get(ARG_START_DATE),
-                                endDate
-                        )
-                ));
+                        threshold,
+                        argMap.get(ARG_START_DATE),
+                        endDate
+                );
+                logger.info(reason);
+                blockedIps.add(new BlockedIp(ipAddress, reason));
             }
 
             // Batch insert all blocked ip addresses.
