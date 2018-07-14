@@ -69,7 +69,7 @@ public class ParserCommandLineRunner implements CommandLineRunner {
 
         // If accesslog parameter is present, parse and save the data to database.
         if (isNotBlank(argMap.get(ARG_ACCESS_LOG))) {
-//            accessLogService.parseAndSave(argMap.get(ARG_ACCESS_LOG));
+            accessLogService.parseAndSave(argMap.get(ARG_ACCESS_LOG));
         }
 
         int threshold = 0;

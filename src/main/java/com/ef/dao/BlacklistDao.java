@@ -10,9 +10,6 @@ import java.util.List;
  */
 public interface BlacklistDao {
 
-    static final String PARAM_IP_ADDRESS = "ip_address";
-    static final String PARAM_REASON = "reason";
-
     public abstract int save(Blacklist blacklist) throws SQLException;
 
     public abstract int[] saveAll(List<Blacklist> blacklistedIps) throws SQLException;

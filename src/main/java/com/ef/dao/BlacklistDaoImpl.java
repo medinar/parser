@@ -41,6 +41,7 @@ public class BlacklistDaoImpl extends NamedParameterJdbcDaoSupport implements Bl
         );
     }
 
+    // TODO: Add unique index for ip and reason.
     @Override
     public int[] saveAll(List<Blacklist> blacklistedIps) throws SQLException {
         return getNamedParameterJdbcTemplate().batchUpdate(
