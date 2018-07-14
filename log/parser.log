@@ -1051,3 +1051,465 @@ Caused by: java.lang.UnsupportedOperationException: Not supported yet.
 2018-07-14 10:01:17 INFO  o.s.j.e.a.AnnotationMBeanExporter:183 - Unregistering JMX-exposed beans
 2018-07-14 10:01:17 INFO  c.z.h.HikariDataSource:381 - HikariPool-1 - Shutdown initiated...
 2018-07-14 10:01:17 INFO  c.z.h.HikariDataSource:383 - HikariPool-1 - Shutdown completed.
+2018-07-14 20:24:58 INFO  c.e.Parser:50 - Starting Parser on Mhels-iMac.local with PID 1221 (/Users/mhelmedina/NetBeansProjects/wallethub/parser/target/classes started by mhelmedina in /Users/mhelmedina/NetBeansProjects/wallethub/parser)
+2018-07-14 20:24:58 INFO  c.e.Parser:656 - The following profiles are active: dev
+2018-07-14 20:24:59 INFO  o.s.c.a.AnnotationConfigApplicationContext:589 - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@305b7c14: startup date [Sat Jul 14 20:24:59 PHT 2018]; root of context hierarchy
+2018-07-14 20:25:00 INFO  o.s.b.f.s.DefaultListableBeanFactory:824 - Overriding bean definition for bean 'transactionManager' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.batch.core.configuration.annotation.SimpleBatchConfiguration; factoryMethodName=transactionManager; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/batch/core/configuration/annotation/SimpleBatchConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=batchConfiguration; factoryMethodName=transactionManager; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/ef/service/batch/configuration/BatchConfiguration.class]]
+2018-07-14 20:25:00 INFO  o.s.b.f.s.DefaultListableBeanFactory:824 - Overriding bean definition for bean 'jobRepository' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.batch.core.configuration.annotation.SimpleBatchConfiguration; factoryMethodName=jobRepository; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/batch/core/configuration/annotation/SimpleBatchConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=batchConfiguration; factoryMethodName=jobRepository; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/ef/service/batch/configuration/BatchConfiguration.class]]
+2018-07-14 20:25:00 INFO  o.s.b.f.s.DefaultListableBeanFactory:824 - Overriding bean definition for bean 'jobLauncher' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.batch.core.configuration.annotation.SimpleBatchConfiguration; factoryMethodName=jobLauncher; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/batch/core/configuration/annotation/SimpleBatchConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=batchConfiguration; factoryMethodName=jobLauncher; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/ef/service/batch/configuration/BatchConfiguration.class]]
+2018-07-14 20:25:00 WARN  o.s.c.a.ConfigurationClassEnhancer:353 - @Bean method ScopeConfiguration.stepScope is non-static and returns an object assignable to Spring's BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method's declaring @Configuration class. Add the 'static' modifier to this method to avoid these container lifecycle issues; see @Bean javadoc for complete details.
+2018-07-14 20:25:00 WARN  o.s.c.a.ConfigurationClassEnhancer:353 - @Bean method ScopeConfiguration.jobScope is non-static and returns an object assignable to Spring's BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method's declaring @Configuration class. Add the 'static' modifier to this method to avoid these container lifecycle issues; see @Bean javadoc for complete details.
+2018-07-14 20:25:01 INFO  c.z.h.HikariDataSource:110 - HikariPool-1 - Starting...
+2018-07-14 20:25:03 ERROR c.z.h.p.HikariPool:567 - HikariPool-1 - Exception during pool initialization.
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2188)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2219)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2014)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:776)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:386)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:117)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:123)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:365)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:194)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:460)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:534)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:151)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:115)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:78)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:324)
+	at org.springframework.boot.jdbc.EmbeddedDatabaseConnection.isEmbedded(EmbeddedDatabaseConnection.java:123)
+	at org.springframework.boot.autoconfigure.jdbc.DataSourceInitializer.isEmbedded(DataSourceInitializer.java:140)
+	at org.springframework.boot.autoconfigure.jdbc.DataSourceInitializer.isEnabled(DataSourceInitializer.java:132)
+	at org.springframework.boot.autoconfigure.jdbc.DataSourceInitializer.createSchema(DataSourceInitializer.java:98)
+	at org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker.afterPropertiesSet(DataSourceInitializerInvoker.java:64)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1706)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:583)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:225)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1015)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:334)
+	at org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerPostProcessor.postProcessAfterInitialization(DataSourceInitializerPostProcessor.java:55)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsAfterInitialization(AbstractAutowireCapableBeanFactory.java:438)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1714)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:583)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:251)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1325)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1291)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1096)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1065)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:584)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:91)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:373)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1344)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:368)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1250)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1099)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:251)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1065)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:584)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:91)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:373)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1344)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:368)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1250)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1099)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:545)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:251)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1065)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:584)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:91)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:373)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1344)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:251)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1138)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1065)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:584)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:91)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:373)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1344)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:137)
+	at com.ef.Parser.main(Parser.java:16)
+2018-07-14 20:25:03 INFO  o.s.b.c.l.s.SimpleJobLauncher:201 - No TaskExecutor has been set, defaulting to synchronous executor.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final org.springframework.jdbc.core.JdbcTemplate org.springframework.jdbc.core.support.JdbcDaoSupport.getJdbcTemplate()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.jdbc.core.support.JdbcDaoSupport.setJdbcTemplate(org.springframework.jdbc.core.JdbcTemplate)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.jdbc.core.support.JdbcDaoSupport.setDataSource(javax.sql.DataSource)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final javax.sql.DataSource org.springframework.jdbc.core.support.JdbcDaoSupport.getDataSource()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final void org.springframework.jdbc.core.support.JdbcDaoSupport.releaseConnection(java.sql.Connection)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final org.springframework.jdbc.support.SQLExceptionTranslator org.springframework.jdbc.core.support.JdbcDaoSupport.getExceptionTranslator()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final java.sql.Connection org.springframework.jdbc.core.support.JdbcDaoSupport.getConnection() throws org.springframework.jdbc.CannotGetJdbcConnectionException] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 WARN  o.s.a.f.CglibAopProxy:263 - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final org.springframework.jdbc.core.JdbcTemplate org.springframework.jdbc.core.support.JdbcDaoSupport.getJdbcTemplate()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.jdbc.core.support.JdbcDaoSupport.setJdbcTemplate(org.springframework.jdbc.core.JdbcTemplate)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.jdbc.core.support.JdbcDaoSupport.setDataSource(javax.sql.DataSource)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final javax.sql.DataSource org.springframework.jdbc.core.support.JdbcDaoSupport.getDataSource()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final void org.springframework.jdbc.core.support.JdbcDaoSupport.releaseConnection(java.sql.Connection)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final org.springframework.jdbc.support.SQLExceptionTranslator org.springframework.jdbc.core.support.JdbcDaoSupport.getExceptionTranslator()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final java.sql.Connection org.springframework.jdbc.core.support.JdbcDaoSupport.getConnection() throws org.springframework.jdbc.CannotGetJdbcConnectionException] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 WARN  o.s.a.f.CglibAopProxy:263 - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+2018-07-14 20:25:04 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:25:04 INFO  c.z.h.HikariDataSource:110 - HikariPool-1 - Starting...
+2018-07-14 20:25:05 ERROR c.z.h.p.HikariPool:567 - HikariPool-1 - Exception during pool initialization.
+java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2188)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2219)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2014)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:776)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:386)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:117)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:123)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:365)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:194)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:460)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:534)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:151)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:115)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:78)
+	at org.springframework.jdbc.support.JdbcUtils.extractDatabaseMetaData(JdbcUtils.java:318)
+	at org.springframework.jdbc.support.JdbcUtils.extractDatabaseMetaData(JdbcUtils.java:355)
+	at org.springframework.batch.support.DatabaseType.fromMetaData(DatabaseType.java:100)
+	at org.springframework.batch.core.repository.support.JobRepositoryFactoryBean.afterPropertiesSet(JobRepositoryFactoryBean.java:183)
+	at org.springframework.boot.autoconfigure.batch.BasicBatchConfigurer.createJobRepository(BasicBatchConfigurer.java:131)
+	at org.springframework.boot.autoconfigure.batch.BasicBatchConfigurer.initialize(BasicBatchConfigurer.java:96)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:369)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:312)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:135)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:423)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1702)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:583)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:137)
+	at com.ef.Parser.main(Parser.java:16)
+2018-07-14 20:25:05 WARN  o.s.c.a.AnnotationConfigApplicationContext:557 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchConfigurer': Invocation of init method failed; nested exception is java.lang.IllegalStateException: Unable to initialize Spring Batch
+2018-07-14 20:25:05 INFO  o.s.j.e.a.AnnotationMBeanExporter:452 - Unregistering JMX-exposed beans on shutdown
+2018-07-14 20:25:05 INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener:101 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-07-14 20:25:05 ERROR o.s.b.SpringApplication:833 - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'batchConfigurer': Invocation of init method failed; nested exception is java.lang.IllegalStateException: Unable to initialize Spring Batch
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:138)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:423)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1702)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:583)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:502)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:312)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:228)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:310)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:760)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:868)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:388)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:327)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:137)
+	at com.ef.Parser.main(Parser.java:16)
+Caused by: java.lang.IllegalStateException: Unable to initialize Spring Batch
+	at org.springframework.boot.autoconfigure.batch.BasicBatchConfigurer.initialize(BasicBatchConfigurer.java:101)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:369)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:312)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:135)
+	... 16 common frames omitted
+Caused by: org.springframework.jdbc.support.MetaDataAccessException: Could not get Connection for extracting meta data; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at org.springframework.jdbc.support.JdbcUtils.extractDatabaseMetaData(JdbcUtils.java:327)
+	at org.springframework.jdbc.support.JdbcUtils.extractDatabaseMetaData(JdbcUtils.java:355)
+	at org.springframework.batch.support.DatabaseType.fromMetaData(DatabaseType.java:100)
+	at org.springframework.batch.core.repository.support.JobRepositoryFactoryBean.afterPropertiesSet(JobRepositoryFactoryBean.java:183)
+	at org.springframework.boot.autoconfigure.batch.BasicBatchConfigurer.createJobRepository(BasicBatchConfigurer.java:131)
+	at org.springframework.boot.autoconfigure.batch.BasicBatchConfigurer.initialize(BasicBatchConfigurer.java:96)
+	... 23 common frames omitted
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81)
+	at org.springframework.jdbc.support.JdbcUtils.extractDatabaseMetaData(JdbcUtils.java:318)
+	... 28 common frames omitted
+Caused by: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:965)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:873)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1710)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1226)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2188)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2219)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2014)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:776)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:386)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:330)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:117)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:123)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:365)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:194)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:460)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:534)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:151)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:115)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:78)
+	... 29 common frames omitted
+2018-07-14 20:28:24 INFO  c.e.Parser:50 - Starting Parser on Mhels-iMac.local with PID 1225 (/Users/mhelmedina/NetBeansProjects/wallethub/parser/target/classes started by mhelmedina in /Users/mhelmedina/NetBeansProjects/wallethub/parser)
+2018-07-14 20:28:24 INFO  c.e.Parser:656 - The following profiles are active: dev
+2018-07-14 20:28:24 INFO  o.s.c.a.AnnotationConfigApplicationContext:589 - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@2de23121: startup date [Sat Jul 14 20:28:24 PHT 2018]; root of context hierarchy
+2018-07-14 20:28:25 INFO  o.s.b.f.s.DefaultListableBeanFactory:824 - Overriding bean definition for bean 'transactionManager' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.batch.core.configuration.annotation.SimpleBatchConfiguration; factoryMethodName=transactionManager; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/batch/core/configuration/annotation/SimpleBatchConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=batchConfiguration; factoryMethodName=transactionManager; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/ef/service/batch/configuration/BatchConfiguration.class]]
+2018-07-14 20:28:25 INFO  o.s.b.f.s.DefaultListableBeanFactory:824 - Overriding bean definition for bean 'jobRepository' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.batch.core.configuration.annotation.SimpleBatchConfiguration; factoryMethodName=jobRepository; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/batch/core/configuration/annotation/SimpleBatchConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=batchConfiguration; factoryMethodName=jobRepository; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/ef/service/batch/configuration/BatchConfiguration.class]]
+2018-07-14 20:28:25 INFO  o.s.b.f.s.DefaultListableBeanFactory:824 - Overriding bean definition for bean 'jobLauncher' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.batch.core.configuration.annotation.SimpleBatchConfiguration; factoryMethodName=jobLauncher; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/batch/core/configuration/annotation/SimpleBatchConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=batchConfiguration; factoryMethodName=jobLauncher; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/ef/service/batch/configuration/BatchConfiguration.class]]
+2018-07-14 20:28:25 WARN  o.s.c.a.ConfigurationClassEnhancer:353 - @Bean method ScopeConfiguration.stepScope is non-static and returns an object assignable to Spring's BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method's declaring @Configuration class. Add the 'static' modifier to this method to avoid these container lifecycle issues; see @Bean javadoc for complete details.
+2018-07-14 20:28:25 WARN  o.s.c.a.ConfigurationClassEnhancer:353 - @Bean method ScopeConfiguration.jobScope is non-static and returns an object assignable to Spring's BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method's declaring @Configuration class. Add the 'static' modifier to this method to avoid these container lifecycle issues; see @Bean javadoc for complete details.
+2018-07-14 20:28:25 INFO  c.z.h.HikariDataSource:110 - HikariPool-1 - Starting...
+2018-07-14 20:28:26 INFO  c.z.h.HikariDataSource:123 - HikariPool-1 - Start completed.
+2018-07-14 20:28:26 INFO  o.s.b.c.l.s.SimpleJobLauncher:201 - No TaskExecutor has been set, defaulting to synchronous executor.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.jdbc.core.support.JdbcDaoSupport.setDataSource(javax.sql.DataSource)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final javax.sql.DataSource org.springframework.jdbc.core.support.JdbcDaoSupport.getDataSource()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final void org.springframework.jdbc.core.support.JdbcDaoSupport.releaseConnection(java.sql.Connection)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final org.springframework.jdbc.support.SQLExceptionTranslator org.springframework.jdbc.core.support.JdbcDaoSupport.getExceptionTranslator()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final org.springframework.jdbc.core.JdbcTemplate org.springframework.jdbc.core.support.JdbcDaoSupport.getJdbcTemplate()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.jdbc.core.support.JdbcDaoSupport.setJdbcTemplate(org.springframework.jdbc.core.JdbcTemplate)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final java.sql.Connection org.springframework.jdbc.core.support.JdbcDaoSupport.getConnection() throws org.springframework.jdbc.CannotGetJdbcConnectionException] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 WARN  o.s.a.f.CglibAopProxy:263 - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.jdbc.core.support.JdbcDaoSupport.setDataSource(javax.sql.DataSource)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final javax.sql.DataSource org.springframework.jdbc.core.support.JdbcDaoSupport.getDataSource()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final void org.springframework.jdbc.core.support.JdbcDaoSupport.releaseConnection(java.sql.Connection)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final org.springframework.jdbc.support.SQLExceptionTranslator org.springframework.jdbc.core.support.JdbcDaoSupport.getExceptionTranslator()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final org.springframework.jdbc.core.JdbcTemplate org.springframework.jdbc.core.support.JdbcDaoSupport.getJdbcTemplate()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.jdbc.core.support.JdbcDaoSupport.setJdbcTemplate(org.springframework.jdbc.core.JdbcTemplate)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final java.sql.Connection org.springframework.jdbc.core.support.JdbcDaoSupport.getConnection() throws org.springframework.jdbc.CannotGetJdbcConnectionException] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 WARN  o.s.a.f.CglibAopProxy:263 - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+2018-07-14 20:28:26 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 20:28:26 INFO  o.s.b.c.r.s.JobRepositoryFactoryBean:184 - No database type set, using meta data indicating: MYSQL
+2018-07-14 20:28:26 INFO  o.s.b.c.l.s.SimpleJobLauncher:201 - No TaskExecutor has been set, defaulting to synchronous executor.
+2018-07-14 20:28:26 INFO  o.s.j.e.a.AnnotationMBeanExporter:434 - Registering beans for JMX exposure on startup
+2018-07-14 20:28:26 INFO  o.s.j.e.a.AnnotationMBeanExporter:896 - Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-07-14 20:28:26 INFO  o.s.j.e.a.AnnotationMBeanExporter:669 - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-07-14 20:28:26 INFO  c.e.Parser:59 - Started Parser in 22.04 seconds (JVM running for 22.513)
+2018-07-14 20:28:26 INFO  o.s.b.c.l.s.SimpleJobLauncher:139 - Job: [FlowJob: [name=PARSE_AND_SAVE_ACCESS_LOG_JOB]] launched with the following parameters: [{path=/Users/mhelmedina/NetBeansProjects/wallethub/parser/src/main/resources/access.log, time=1531571306636}]
+2018-07-14 20:28:26 INFO  o.s.b.c.j.SimpleStepHandler:146 - Executing step: [step]
+2018-07-14 20:31:22 INFO  c.e.s.b.l.JobCompletionNotificationListener:31 - !!! JOB FINISHED! Time to verify the results
+2018-07-14 20:31:22 INFO  c.e.s.b.l.JobCompletionNotificationListener:47 - count -> 116484
+2018-07-14 20:31:22 INFO  o.s.b.c.l.s.SimpleJobLauncher:142 - Job: [FlowJob: [name=PARSE_AND_SAVE_ACCESS_LOG_JOB]] completed with the following parameters: [{path=/Users/mhelmedina/NetBeansProjects/wallethub/parser/src/main/resources/access.log, time=1531571306636}] and the following status: [COMPLETED]
+2018-07-14 20:31:22 INFO  c.e.s.a.AccessLogServiceImpl:46 - startDateString -> 2017-01-01.00:00:00, duration -> hourly, threshold -> 200
+2018-07-14 20:31:22 INFO  o.s.b.f.x.XmlBeanDefinitionReader:316 - Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+2018-07-14 20:31:23 INFO  o.s.j.s.SQLErrorCodesFactory:128 - SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase, Hana]
+2018-07-14 20:31:23 INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener:101 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2018-07-14 20:31:23 ERROR o.s.b.SpringApplication:833 - Application run failed
+java.lang.IllegalStateException: Failed to execute CommandLineRunner
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:793)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:774)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:137)
+	at com.ef.Parser.main(Parser.java:16)
+Caused by: org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [INSERT INTO blacklist (ip_address, reason) VALUES (?, ?)]; nested exception is java.sql.BatchUpdateException: Table 'report.blacklist' doesn't exist
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:235)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1402)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:620)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:634)
+	at org.springframework.jdbc.core.JdbcTemplate.batchUpdate(JdbcTemplate.java:924)
+	at org.springframework.jdbc.core.namedparam.NamedParameterBatchUpdateUtils.executeBatchUpdateWithNamedParameters(NamedParameterBatchUpdateUtils.java:43)
+	at org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate.batchUpdate(NamedParameterJdbcTemplate.java:357)
+	at com.ef.dao.BlacklistDaoImpl.saveAll(BlacklistDaoImpl.java:47)
+	at com.ef.dao.BlacklistDaoImpl$$FastClassBySpringCGLIB$$4ebf89b1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:204)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:747)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:139)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:185)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)
+	at com.ef.dao.BlacklistDaoImpl$$EnhancerBySpringCGLIB$$49a40e4e.saveAll(<generated>)
+	at com.ef.service.accesslog.BlacklistServiceImpl.saveAll(BlacklistServiceImpl.java:39)
+	at com.ef.ParserCommandLineRunner.run(ParserCommandLineRunner.java:114)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:790)
+	... 4 common frames omitted
+Caused by: java.sql.BatchUpdateException: Table 'report.blacklist' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createBatchUpdateException(SQLError.java:1163)
+	at com.mysql.jdbc.PreparedStatement.executeBatchSerially(PreparedStatement.java:1778)
+	at com.mysql.jdbc.PreparedStatement.executeBatchInternal(PreparedStatement.java:1262)
+	at com.mysql.jdbc.StatementImpl.executeBatch(StatementImpl.java:970)
+	at com.zaxxer.hikari.pool.ProxyStatement.executeBatch(ProxyStatement.java:128)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeBatch(HikariProxyPreparedStatement.java)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$batchUpdate$2(JdbcTemplate.java:938)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:605)
+	... 20 common frames omitted
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'report.blacklist' doesn't exist
+	at sun.reflect.GeneratedConstructorAccessor35.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:944)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3973)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3909)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2527)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2680)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2484)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:1858)
+	at com.mysql.jdbc.PreparedStatement.executeUpdateInternal(PreparedStatement.java:2079)
+	at com.mysql.jdbc.PreparedStatement.executeBatchSerially(PreparedStatement.java:1756)
+	... 26 common frames omitted
+2018-07-14 20:31:23 INFO  o.s.c.a.AnnotationConfigApplicationContext:989 - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@2de23121: startup date [Sat Jul 14 20:28:24 PHT 2018]; root of context hierarchy
+2018-07-14 20:31:23 INFO  o.s.j.e.a.AnnotationMBeanExporter:452 - Unregistering JMX-exposed beans on shutdown
+2018-07-14 20:31:23 INFO  o.s.j.e.a.AnnotationMBeanExporter:183 - Unregistering JMX-exposed beans
+2018-07-14 20:31:23 INFO  c.z.h.HikariDataSource:381 - HikariPool-1 - Shutdown initiated...
+2018-07-14 20:31:23 INFO  c.z.h.HikariDataSource:383 - HikariPool-1 - Shutdown completed.
+2018-07-14 21:12:29 INFO  c.e.Parser:50 - Starting Parser on Mhels-iMac.local with PID 1295 (/Users/mhelmedina/NetBeansProjects/wallethub/parser/target/classes started by mhelmedina in /Users/mhelmedina/NetBeansProjects/wallethub/parser)
+2018-07-14 21:12:29 INFO  c.e.Parser:656 - The following profiles are active: dev
+2018-07-14 21:12:29 INFO  o.s.c.a.AnnotationConfigApplicationContext:589 - Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@6913c1fb: startup date [Sat Jul 14 21:12:29 PHT 2018]; root of context hierarchy
+2018-07-14 21:12:29 INFO  o.s.b.f.s.DefaultListableBeanFactory:824 - Overriding bean definition for bean 'transactionManager' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.batch.core.configuration.annotation.SimpleBatchConfiguration; factoryMethodName=transactionManager; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/batch/core/configuration/annotation/SimpleBatchConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=batchConfiguration; factoryMethodName=transactionManager; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/ef/service/batch/configuration/BatchConfiguration.class]]
+2018-07-14 21:12:29 INFO  o.s.b.f.s.DefaultListableBeanFactory:824 - Overriding bean definition for bean 'jobRepository' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.batch.core.configuration.annotation.SimpleBatchConfiguration; factoryMethodName=jobRepository; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/batch/core/configuration/annotation/SimpleBatchConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=batchConfiguration; factoryMethodName=jobRepository; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/ef/service/batch/configuration/BatchConfiguration.class]]
+2018-07-14 21:12:29 INFO  o.s.b.f.s.DefaultListableBeanFactory:824 - Overriding bean definition for bean 'jobLauncher' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.batch.core.configuration.annotation.SimpleBatchConfiguration; factoryMethodName=jobLauncher; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/batch/core/configuration/annotation/SimpleBatchConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=batchConfiguration; factoryMethodName=jobLauncher; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [com/ef/service/batch/configuration/BatchConfiguration.class]]
+2018-07-14 21:12:29 WARN  o.s.c.a.ConfigurationClassEnhancer:353 - @Bean method ScopeConfiguration.stepScope is non-static and returns an object assignable to Spring's BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method's declaring @Configuration class. Add the 'static' modifier to this method to avoid these container lifecycle issues; see @Bean javadoc for complete details.
+2018-07-14 21:12:29 WARN  o.s.c.a.ConfigurationClassEnhancer:353 - @Bean method ScopeConfiguration.jobScope is non-static and returns an object assignable to Spring's BeanFactoryPostProcessor interface. This will result in a failure to process annotations such as @Autowired, @Resource and @PostConstruct within the method's declaring @Configuration class. Add the 'static' modifier to this method to avoid these container lifecycle issues; see @Bean javadoc for complete details.
+2018-07-14 21:12:29 INFO  c.z.h.HikariDataSource:110 - HikariPool-1 - Starting...
+2018-07-14 21:12:30 INFO  c.z.h.HikariDataSource:123 - HikariPool-1 - Start completed.
+2018-07-14 21:12:30 INFO  o.s.b.c.l.s.SimpleJobLauncher:201 - No TaskExecutor has been set, defaulting to synchronous executor.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final org.springframework.jdbc.core.JdbcTemplate org.springframework.jdbc.core.support.JdbcDaoSupport.getJdbcTemplate()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.jdbc.core.support.JdbcDaoSupport.setJdbcTemplate(org.springframework.jdbc.core.JdbcTemplate)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.jdbc.core.support.JdbcDaoSupport.setDataSource(javax.sql.DataSource)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final javax.sql.DataSource org.springframework.jdbc.core.support.JdbcDaoSupport.getDataSource()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final void org.springframework.jdbc.core.support.JdbcDaoSupport.releaseConnection(java.sql.Connection)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final org.springframework.jdbc.support.SQLExceptionTranslator org.springframework.jdbc.core.support.JdbcDaoSupport.getExceptionTranslator()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final java.sql.Connection org.springframework.jdbc.core.support.JdbcDaoSupport.getConnection() throws org.springframework.jdbc.CannotGetJdbcConnectionException] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 WARN  o.s.a.f.CglibAopProxy:263 - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final org.springframework.jdbc.core.JdbcTemplate org.springframework.jdbc.core.support.JdbcDaoSupport.getJdbcTemplate()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.jdbc.core.support.JdbcDaoSupport.setJdbcTemplate(org.springframework.jdbc.core.JdbcTemplate)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.jdbc.core.support.JdbcDaoSupport.setDataSource(javax.sql.DataSource)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final javax.sql.DataSource org.springframework.jdbc.core.support.JdbcDaoSupport.getDataSource()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final void org.springframework.jdbc.core.support.JdbcDaoSupport.releaseConnection(java.sql.Connection)] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final org.springframework.jdbc.support.SQLExceptionTranslator org.springframework.jdbc.core.support.JdbcDaoSupport.getExceptionTranslator()] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [protected final java.sql.Connection org.springframework.jdbc.core.support.JdbcDaoSupport.getConnection() throws org.springframework.jdbc.CannotGetJdbcConnectionException] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 WARN  o.s.a.f.CglibAopProxy:263 - Unable to proxy interface-implementing method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is marked as final: Consider using interface-based JDK proxies instead!
+2018-07-14 21:12:30 INFO  o.s.a.f.CglibAopProxy:266 - Final method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] cannot get proxied via CGLIB: Calls to this method will NOT be routed to the target instance and might lead to NPEs against uninitialized fields in the proxy instance.
+2018-07-14 21:12:30 INFO  o.s.b.c.r.s.JobRepositoryFactoryBean:184 - No database type set, using meta data indicating: MYSQL
+2018-07-14 21:12:30 INFO  o.s.b.c.l.s.SimpleJobLauncher:201 - No TaskExecutor has been set, defaulting to synchronous executor.
+2018-07-14 21:12:30 INFO  o.s.j.e.a.AnnotationMBeanExporter:434 - Registering beans for JMX exposure on startup
+2018-07-14 21:12:30 INFO  o.s.j.e.a.AnnotationMBeanExporter:896 - Bean with name 'dataSource' has been autodetected for JMX exposure
+2018-07-14 21:12:30 INFO  o.s.j.e.a.AnnotationMBeanExporter:669 - Located MBean 'dataSource': registering with JMX server as MBean [com.zaxxer.hikari:name=dataSource,type=HikariDataSource]
+2018-07-14 21:12:30 INFO  c.e.Parser:59 - Started Parser in 21.81 seconds (JVM running for 22.514)
+2018-07-14 21:12:30 INFO  o.s.b.c.l.s.SimpleJobLauncher:139 - Job: [FlowJob: [name=PARSE_AND_SAVE_ACCESS_LOG_JOB]] launched with the following parameters: [{path=/Users/mhelmedina/NetBeansProjects/wallethub/parser/src/main/resources/access.log, time=1531573950535}]
+2018-07-14 21:12:30 INFO  o.s.b.c.j.SimpleStepHandler:146 - Executing step: [step]
+2018-07-14 21:14:27 INFO  c.e.s.b.l.JobCompletionNotificationListener:31 - !!! JOB FINISHED! Time to verify the results
+2018-07-14 21:14:27 INFO  c.e.s.b.l.JobCompletionNotificationListener:47 - count -> 232968
+2018-07-14 21:14:27 INFO  o.s.b.c.l.s.SimpleJobLauncher:142 - Job: [FlowJob: [name=PARSE_AND_SAVE_ACCESS_LOG_JOB]] completed with the following parameters: [{path=/Users/mhelmedina/NetBeansProjects/wallethub/parser/src/main/resources/access.log, time=1531573950535}] and the following status: [COMPLETED]
+2018-07-14 21:14:27 INFO  c.e.s.a.AccessLogServiceImpl:47 - getBlockedIpAddresses(startDateString=2017-01-01.00:00:00, duration=hourly, threshold=200)
+2018-07-14 21:14:27 INFO  o.s.c.a.AnnotationConfigApplicationContext:989 - Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@6913c1fb: startup date [Sat Jul 14 21:12:29 PHT 2018]; root of context hierarchy
+2018-07-14 21:14:27 INFO  o.s.j.e.a.AnnotationMBeanExporter:452 - Unregistering JMX-exposed beans on shutdown
+2018-07-14 21:14:27 INFO  o.s.j.e.a.AnnotationMBeanExporter:183 - Unregistering JMX-exposed beans
+2018-07-14 21:14:27 INFO  c.z.h.HikariDataSource:381 - HikariPool-1 - Shutdown initiated...
+2018-07-14 21:14:27 INFO  c.z.h.HikariDataSource:383 - HikariPool-1 - Shutdown completed.

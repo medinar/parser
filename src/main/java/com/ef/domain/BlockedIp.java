@@ -2,19 +2,18 @@ package com.ef.domain;
 
 /**
  *
- * TODO: Consider renaming this to BlacklistedIp
  *
  * @author Rommel Medina
  */
-public class Blacklist {
+public class BlockedIp {
 
     private String ipAddress;
     private String reason;
 
-    public Blacklist() {
+    public BlockedIp() {
     }
 
-    public Blacklist(String ipAddress, String reason) {
+    public BlockedIp(String ipAddress, String reason) {
         this.ipAddress = ipAddress;
         this.reason = reason;
     }
@@ -37,7 +36,7 @@ public class Blacklist {
 
     @Override
     public String toString() {
-        return "Blacklist{" + "ipAddress=" + ipAddress + ", reason=" + reason + '}';
+        return "BlockedIp{" + "ipAddress=" + ipAddress + ", reason=" + reason + '}';
     }
 
 }

@@ -1,7 +1,7 @@
 package com.ef.dao;
 
 import com.ef.config.AppConfig;
-import com.ef.domain.Blacklist;
+import com.ef.domain.BlockedIp;
 import java.sql.SQLException;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
  * @author Rommel Medina
  */
 @Repository
-public class BlacklistDaoImpl extends NamedParameterJdbcDaoSupport implements BlacklistDao {
+public class BlockedIpDaoImpl extends NamedParameterJdbcDaoSupport implements BlockedIpDao {
 
     @Autowired
     AppConfig config;
@@ -34,19 +34,19 @@ public class BlacklistDaoImpl extends NamedParameterJdbcDaoSupport implements Bl
     }
 
     @Override
-    public int save(Blacklist blacklist) throws SQLException {
+    public int save(BlockedIp blockedIp) throws SQLException {
         return getNamedParameterJdbcTemplate().update(
-                config.getInsertBlacklistQuery(),
-                new BeanPropertySqlParameterSource(blacklist)
+                config.getInsertBlockedIpQuery(),
+                new BeanPropertySqlParameterSource(blockedIp)
         );
     }
 
     // TODO: Add unique index for ip and reason.
     @Override
-    public int[] saveAll(List<Blacklist> blacklistedIps) throws SQLException {
+    public int[] saveAll(List<BlockedIp> blockedIps) throws SQLException {
         return getNamedParameterJdbcTemplate().batchUpdate(
-                config.getInsertBlacklistQuery(),
-                SqlParameterSourceUtils.createBatch(blacklistedIps)
+                config.getInsertBlockedIpQuery(),
+                SqlParameterSourceUtils.createBatch(blockedIps)
         );
     }
 

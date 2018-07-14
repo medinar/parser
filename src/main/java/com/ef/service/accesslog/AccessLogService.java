@@ -9,9 +9,11 @@ import java.util.List;
  */
 public interface AccessLogService {
 
+    static final String PATH = "path";
+    static final String TIME = "time";
+
     /**
-     * Get all requests that reached the given threshold for the given date
-     * within the given duration.
+     * Get IP addresses that reached the maximum number of requests allowed.
      *
      * @param startDateString
      * @param duration
@@ -19,7 +21,7 @@ public interface AccessLogService {
      * @return
      * @throws com.ef.exception.AccessLogServiceException
      */
-    public abstract List<String> getIpAddresses(
+    public abstract List<String> getBlockedIpAddresses(
             String startDateString,
             String duration,
             int threshold

@@ -24,7 +24,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccessLogServiceImpl implements AccessLogService {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+    private final Logger logger
+            = LoggerFactory.getLogger(this.getClass().getName());
 
     @Autowired
     JobLauncher jobLauncher;
@@ -36,7 +37,7 @@ public class AccessLogServiceImpl implements AccessLogService {
     AccessLogDao accessLogDao;
 
     @Override
-    public List<String> getIpAddresses(
+    public List<String> getBlockedIpAddresses(
             String startDateString,
             String duration,
             int threshold) throws AccessLogServiceException {
@@ -44,7 +45,7 @@ public class AccessLogServiceImpl implements AccessLogService {
         List<String> ipAddresses = new ArrayList<>();
         try {
             logger.info(
-                    "startDateString -> {}, duration -> {}, threshold -> {}",
+                    "getBlockedIpAddresses(startDateString={}, duration={}, threshold={})",
                     startDateString, duration, threshold
             );
 
@@ -66,9 +67,9 @@ public class AccessLogServiceImpl implements AccessLogService {
     public void parseAndSave(String path) throws AccessLogServiceException {
         try {
             jobLauncher.run(parseAndSaveAccessLogJob, new JobParametersBuilder()
-                            .addString("path", path)
-                            .addLong("time", System.currentTimeMillis())
-                            .toJobParameters()
+                    .addString(PATH, path)
+                    .addLong(TIME, System.currentTimeMillis())
+                    .toJobParameters()
             );
         }
         catch (JobExecutionAlreadyRunningException

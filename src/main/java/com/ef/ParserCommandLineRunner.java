@@ -1,15 +1,14 @@
 package com.ef;
 
 import com.ef.config.AppConfig;
-import com.ef.domain.Blacklist;
+import com.ef.domain.BlockedIp;
 import com.ef.service.accesslog.AccessLogService;
-import com.ef.service.accesslog.BlacklistService;
+import com.ef.service.accesslog.BlockedIpService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
 import static org.apache.commons.lang3.StringUtils.containsIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.equalsIgnoreCase;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -45,7 +44,7 @@ public class ParserCommandLineRunner implements CommandLineRunner {
     private AccessLogService accessLogService;
 
     @Autowired
-    private BlacklistService blacklistService;
+    private BlockedIpService blockedIpService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -73,8 +72,8 @@ public class ParserCommandLineRunner implements CommandLineRunner {
         }
 
         int threshold = 0;
-        // If the atleast the date and the duration is present,
-        // call getRequests(...) method.
+        // If atleast the date and the duration is present,
+        // retrieve the list of blocked ip addresses.
         // Validate duration. Duration should either be "hourly" or "daily" only.
         if (isNotBlank(argMap.get(ARG_START_DATE))
                 && isNotBlank(argMap.get(ARG_DURATION))
@@ -94,24 +93,28 @@ public class ParserCommandLineRunner implements CommandLineRunner {
                         .getThreshold()
                         .get(argMap.get(ARG_DURATION).toLowerCase());
             }
-            List<String> ipAddresses = accessLogService.getIpAddresses(
-                    argMap.get(ARG_START_DATE),
-                    argMap.get(ARG_DURATION),
-                    threshold);
+            List<String> blockedIpAddresses = accessLogService
+                    .getBlockedIpAddresses(
+                            argMap.get(ARG_START_DATE),
+                            argMap.get(ARG_DURATION),
+                            threshold
+                    );
 
             // TODO: Research on how to add hour or day on the given date.
-            List<Blacklist> blacklistedIps = new ArrayList<>();
-            for (String ipAddress : ipAddresses) {
-                blacklistedIps.add(new Blacklist(
+            List<BlockedIp> blockedIps = new ArrayList<>();
+            for (String ipAddress : blockedIpAddresses) {
+                blockedIps.add(new BlockedIp(
                         ipAddress,
-                        StringUtils.join(ipAddress,
-                                " has ",
+                        String.format("%s has %s or more requests between %s and %s",
+                                ipAddress,
                                 threshold,
-                                " or more requests.")
+                                argMap.get(ARG_START_DATE),
+                                argMap.get(ARG_START_DATE)
+                        )
                 ));
             }
-            // Batch inserts all blacklisted ip addresses.
-            blacklistService.saveAll(blacklistedIps);
+            // Batch inserts all blocked ip addresses.
+            blockedIpService.saveAll(blockedIps);
 
             // 192.168.11.231 has 200 or more requests between 2017-01-01.15:00:00 and 2017-01-01.15:59:59
         }

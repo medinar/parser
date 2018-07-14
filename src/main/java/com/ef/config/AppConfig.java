@@ -18,7 +18,7 @@ public class AppConfig {
     private String delimeter; // spring batch delimeter
     private String insertAccessLogQuery;
     private String findBlockedIpAddressesQuery;
-    private String insertBlacklistQuery;
+    private String insertBlockedIpQuery;
     private List<String> accessLogColumnNames;
     private final Map<String, String> duration = new HashMap<>();
     private final Map<String, Integer> threshold = new HashMap<>();
@@ -71,12 +71,12 @@ public class AppConfig {
         this.findBlockedIpAddressesQuery = findBlockedIpAddressesQuery;
     }
 
-    public String getInsertBlacklistQuery() {
-        return insertBlacklistQuery;
+    public String getInsertBlockedIpQuery() {
+        return insertBlockedIpQuery;
     }
 
-    public void setInsertBlacklistQuery(String insertBlacklistQuery) {
-        this.insertBlacklistQuery = insertBlacklistQuery;
+    public void setInsertBlockedIpQuery(String insertBlockedIpQuery) {
+        this.insertBlockedIpQuery = insertBlockedIpQuery;
     }
 
 }
