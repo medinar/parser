@@ -4,8 +4,7 @@ spring:
     profiles: dev
     datasource:
         username: root
-        password: Orcl.12345
-#        password: root
+        password: root
         url: jdbc:mysql://localhost:3306/REPORT
     
     # To prevent the batch job to start automatically.
