@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.JobParametersInvalidException;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -28,7 +30,7 @@ public class AccessLogServiceImpl implements AccessLogService {
             = LoggerFactory.getLogger(this.getClass().getName());
 
     @Autowired
-    JobLauncher jobLauncher;
+    JobLauncher asyncJobLauncher;
 
     @Autowired
     Job parseAndSaveAccessLogJob;
@@ -66,11 +68,19 @@ public class AccessLogServiceImpl implements AccessLogService {
     @Override
     public void parseAndSave(String path) throws AccessLogServiceException {
         try {
-            jobLauncher.run(parseAndSaveAccessLogJob, new JobParametersBuilder()
-                    .addString(PATH, path)
-                    .addLong(TIME, System.currentTimeMillis())
-                    .toJobParameters()
+            JobExecution jobExecution = asyncJobLauncher.run(
+                    parseAndSaveAccessLogJob,
+                    new JobParametersBuilder()
+                            .addString(PATH, path)
+                            .addLong(TIME, System.currentTimeMillis())
+                            .toJobParameters()
             );
+
+            while (jobExecution.getStatus() != BatchStatus.ABANDONED
+                    && jobExecution.getStatus() != BatchStatus.COMPLETED
+                    && jobExecution.getStatus() != BatchStatus.FAILED
+                    && jobExecution.getStatus() != BatchStatus.STOPPED) {
+            }
         }
         catch (JobExecutionAlreadyRunningException
                 | JobInstanceAlreadyCompleteException

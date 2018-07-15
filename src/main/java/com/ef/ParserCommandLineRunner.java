@@ -119,6 +119,7 @@ public class ParserCommandLineRunner implements CommandLineRunner {
 
             // Save the blocked ip address with the reason why it was blocked
             // to BlockedIp object.
+            logger.info("Save the blocked ips to a list.");
             List<BlockedIp> blockedIps = new ArrayList<>();
             for (String ipAddress : blockedIpAddresses) {
                 String reason = String.format(
@@ -133,6 +134,7 @@ public class ParserCommandLineRunner implements CommandLineRunner {
             }
 
             // Batch insert all blocked ip addresses.
+            logger.info("Saving the list of blocked ips with reason to DB.");
             blockedIpService.saveAll(blockedIps);
         }
         else {

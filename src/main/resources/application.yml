@@ -16,7 +16,8 @@ spring:
             enabled: false
 
 app:
-    chunkSize: 100000
+    chunkSize: 12000
+    maxThread: 10
     delimeter: "|"
     insertAccessLogQuery: 
         INSERT INTO access_log (log_date, ip_address, request, status, user_agent) 
@@ -46,3 +47,8 @@ app:
         hourly: 1
         daily: 24
     datePattern: yyyy-MM-dd.HH:mm:ss
+    
+logging:
+    level: 
+        ch.qos.logback: ERROR
+        

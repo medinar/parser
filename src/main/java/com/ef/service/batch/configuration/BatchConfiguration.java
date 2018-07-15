@@ -29,6 +29,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.task.SimpleAsyncTaskExecutor;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.transaction.PlatformTransactionManager;
 
 /**
@@ -39,38 +41,48 @@ import org.springframework.transaction.PlatformTransactionManager;
 @EnableBatchProcessing
 public class BatchConfiguration {
 
-//    private final Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     @Autowired
-    private AppConfig appConfig;
-    
+    private AppConfig config;
+
     @Autowired
     private JobBuilderFactory jobBuilderFactory;
-    
+
     @Autowired
     private StepBuilderFactory stepBuilderFactory;
 
     // -------------------------------------------------------------------------
     @Bean
-    public PlatformTransactionManager transactionManager() {
+    public PlatformTransactionManager resourcelessTransactionManager() {
         return new ResourcelessTransactionManager();
     }
 
     @Bean
     public JobRepository jobRepository() throws Exception {
-        return new MapJobRepositoryFactoryBean(transactionManager()).getObject();
+        return new MapJobRepositoryFactoryBean(resourcelessTransactionManager())
+                .getObject();
     }
 
     @Bean
-    public JobLauncher jobLauncher() throws Exception {
+    public JobLauncher asyncJobLauncher() throws Exception {
         SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
         jobLauncher.setJobRepository(jobRepository());
+        jobLauncher.setTaskExecutor(taskExecutor());
         return jobLauncher;
     }
-    // -------------------------------------------------------------------------
 
+    // -------------------------------------------------------------------------
+    // Optimization:
+    @Bean
+    public TaskExecutor taskExecutor() {
+        SimpleAsyncTaskExecutor taskExecutor = new SimpleAsyncTaskExecutor();
+        taskExecutor.setConcurrencyLimit(config.getMaxThread());
+        return taskExecutor;
+    }
+
+    // -------------------------------------------------------------------------
     @Autowired
     private AccessLogItemProcessor processor;
-    
+
     @Autowired
     private AccessLogFieldSetMapper accessLogFieldSetMapper;
 
@@ -87,22 +99,22 @@ public class BatchConfiguration {
                 .name("accessLogItemReader")
                 .resource(resource("")) // Argument to resource injected from jobParameter.
                 .delimited()
-                .delimiter(appConfig.getDelimeter())
-                .names(appConfig
+                .delimiter(config.getDelimeter())
+                .names(config
                         .getAccessLogColumnNames()
-                        .toArray(new String[appConfig
+                        .toArray(new String[config
                                 .getAccessLogColumnNames().size()]
                         )
                 )
                 .fieldSetMapper(accessLogFieldSetMapper)
                 .build();
     }
-    
+
     @Bean
     public JdbcBatchItemWriter<AccessLog> writer(DataSource dataSource) {
         return new JdbcBatchItemWriterBuilder<AccessLog>()
                 .itemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<>())
-                .sql(appConfig.getInsertAccessLogQuery())
+                .sql(config.getInsertAccessLogQuery())
                 .dataSource(dataSource)
                 .build();
     }
@@ -113,23 +125,21 @@ public class BatchConfiguration {
     public Job parseAndSaveAccessLogJob(
             JobCompletionNotificationListener listener,
             Step step) {
-        return jobBuilderFactory.get("PARSE_AND_SAVE_ACCESS_LOG_JOB")
+        return jobBuilderFactory.get("parse-and-save-access-log-job")
                 .incrementer(new RunIdIncrementer())
                 .listener(listener)
                 .flow(step)
                 .end()
                 .build();
     }
-    
+
     @Bean
     public Step step(JdbcBatchItemWriter<AccessLog> writer) {
         return stepBuilderFactory.get("step")
-                .<AccessLog, AccessLog>chunk(appConfig.getChunkSize())
+                .<AccessLog, AccessLog>chunk(config.getChunkSize())
                 .reader(reader())
                 .processor(processor)
                 .writer(writer)
-                // .skipLimit(10) //default is set to 0
-                // .skip(MySQLIntegrityConstraintViolationException.class)
                 .build();
     }
     // end::jobstep[]

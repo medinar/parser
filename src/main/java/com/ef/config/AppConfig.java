@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 
     private int chunkSize; // spring batch commit-interval
+    private int maxThread;
     private String delimeter; // spring batch delimeter
     private String insertAccessLogQuery;
     private String findBlockedIpAddressesQuery;
@@ -30,6 +31,14 @@ public class AppConfig {
 
     public void setChunkSize(int chunkSize) {
         this.chunkSize = chunkSize;
+    }
+
+    public int getMaxThread() {
+        return maxThread;
+    }
+
+    public void setMaxThread(int maxThread) {
+        this.maxThread = maxThread;
     }
 
     public String getDelimeter() {

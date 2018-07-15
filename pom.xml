@@ -37,6 +37,7 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -50,25 +51,12 @@
         </dependency>
         <!-- Spring Batch -->
 
-        <!-- Oracle JDBC Driver -->
-<!--        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc7</artifactId>
-            <version>12.1.0</version>
-        </dependency>-->
-        <!-- Oracle JDBC Driver -->
-
         <!-- MySQL Connector-J -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <!-- MySQL Connector-J --> 
-
-        <!--        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-        </dependency>-->
 
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -86,7 +74,35 @@
                     <fork>true</fork>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.5</version>
+                <executions>
+                    <execution>
+                        <id>parser-distribution-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/resources/distribution/parser-distribution.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>            
         </plugins>
+        
+<!--        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*</exclude>                    
+                </excludes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>-->
     </build>
 
 </project>
