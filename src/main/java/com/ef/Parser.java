@@ -8,6 +8,9 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 @SpringBootApplication
 public class Parser {
 
+    private static final String SPRING_PROFILES_ACTIVE = "spring.profiles.active";
+    private static final String SPRING_CONFIG_LOCATION = "spring.config.location";
+
     public static void main(String[] args) {
         new SpringApplicationBuilder(Parser.class)
                 .bannerMode(Banner.Mode.OFF)
@@ -16,13 +19,12 @@ public class Parser {
                 .run(args);
     }
 
-    static Properties getProperties() {
-        Properties properties = new Properties();
-        properties.put("spring.profiles.active", "dev");
-//        props.put("spring.config.location",
-//                System.getProperty("bobAuditLogging.config.location")
-//        );
-        return properties;
+    private static Properties getProperties() {
+        // Loading external properties.
+        Properties prop = new Properties();
+        prop.put(SPRING_PROFILES_ACTIVE, System.getProperty(SPRING_PROFILES_ACTIVE));
+        prop.put(SPRING_CONFIG_LOCATION, System.getProperty(SPRING_CONFIG_LOCATION));
+        return prop;
     }
 
 }
