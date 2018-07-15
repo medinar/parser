@@ -1,5 +1,10 @@
+-- [1]
 CREATE DATABASE `report`;
 
+-- [2]
+USE report;
+
+-- [3]
 CREATE TABLE `access_log` (
   `oid` int(11) NOT NULL AUTO_INCREMENT,
   `log_date` timestamp,
@@ -11,11 +16,10 @@ CREATE TABLE `access_log` (
   KEY `LOG_DATE_IDX` (`log_date`)
 );
 
+-- [4]
 CREATE TABLE `blocked_ip` (
   `oid` int(11) NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(32),
   `reason` varchar(256),
   PRIMARY KEY (`oid`)
---   PRIMARY KEY (`oid`),
---   UNIQUE KEY `IP_ADDRESS_REASON_UNIQUE_IDX` (`ip_address`,`reason`)
-)
+);

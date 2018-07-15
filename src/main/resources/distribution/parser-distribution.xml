@@ -15,7 +15,8 @@ http://maven.apache.org/xsd/assembly-1.1.0.xsd">
             <directory>src/main/resources/bin</directory>
             <outputDirectory>bin</outputDirectory>
             <includes>
-                <include>start.sh</include>
+                <include>*.sh</include>
+                <include>*.bat</include>
             </includes>
             <fileMode>0755</fileMode>
         </fileSet>        
