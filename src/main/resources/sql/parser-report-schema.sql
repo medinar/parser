@@ -2,7 +2,7 @@
 CREATE DATABASE `report`;
 
 -- [2]
-USE report;
+USE 'report';
 
 -- [3]
 CREATE TABLE `access_log` (
@@ -23,3 +23,9 @@ CREATE TABLE `blocked_ip` (
   `reason` varchar(256),
   PRIMARY KEY (`oid`)
 );
+
+-- [5]
+SHOW DATABASES;
+
+-- [6]
+SHOW TABLES;

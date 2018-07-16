@@ -22,8 +22,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <!-- The main class to start by executing "java -jar" -->
-        <!--<start-class>com.ef.Main</start-class>-->
     </properties>
 
     <dependencies>
@@ -79,14 +77,14 @@
                 <version>2.5.5</version>
                 <executions>
                     <execution>
-                        <id>parser-distribution-assembly</id>
+                        <id>parser-assembly</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
                         </goals>
                         <configuration>
                             <descriptors>
-                                <descriptor>src/main/resources/distribution/parser-distribution.xml</descriptor>
+                                <descriptor>src/main/assembly/assembly.xml</descriptor>
                             </descriptors>
                         </configuration>
                     </execution>

@@ -15,6 +15,8 @@
 
   1) Unpack the archive to your preferred directory, e.g.:
 
+      cd /Users/rommelmedina/NetBeansProjects/wallethub
+
       unzip parser-1.0.0-dist.zip
 
   2) A directory called "parser-1.0.0" will be created.
@@ -37,15 +39,27 @@
 
     c) Save and close.
 
-  5) Open Terminal or CommandPrompt and set working directory to /parser-1.0.0/bin
+  5) Open Terminal or CommandPrompt and set working directory to /parser-1.0.0/bin. e.g.:
 
-  6) Run "java -Dspring.profiles.active=dev -Dspring.config.location=../config/application.yml -jar ../bin/parser-1.0.0.jar --accesslog=../input/access.log --startDate=2017-01-01.00:00:00 --duration=daily --threshold=500" to verify that it is correctly installed.
+      cd /Users/rommelmedina/NetBeansProjects/wallethub/parser-1.0.0/bin
 
-  7) Or run "sh start.sh" or "start.bat" for windows.
+  6) Run startup script. e.g.: 
 
-  8) Verify the result in the console or by executing the following queries:
+      sh start.sh
 
-    a) select count(0) from access_log;
+  7) Run "java -Dspring.profiles.active=dev -Dspring.config.location=../config/application.yml -jar ../bin/parser-1.0.0.jar --accesslog=../input/access.log --startDate=2017-01-01.00:00:00 --duration=daily --threshold=500" to verify that it is correctly installed.
 
-    b) select * from blocked_ip;
+  8) Verify the result on the console or by executing the following queries on MySQL:
+
+    a) Login to MySQL Server.
+
+    b) Execute the following scripts:
+
+        - USE report;
+
+        - SELECT count(0) FROM access_log;
+
+        - SELECT * FROM blocked_ip;
+
+                        *** END ***
 
