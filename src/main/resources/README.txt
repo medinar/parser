@@ -29,7 +29,7 @@
 
   2) Login to MySql Server.
 
-  3) Create the database schema and tables by running the scripts inside parser-report-schema.sql under /parser-1.0.0/sql
+  3) Execute scripts for creating the log data schema inside log-data-schema.sql under /parser-1.0.0/sql
 
   4) Set MySQL username and password of the application.
 
@@ -43,13 +43,15 @@
 
       cd /Users/rommelmedina/NetBeansProjects/wallethub/parser-1.0.0/bin
 
-  6) Run startup script. e.g.: 
+  6) Run the Parser Application by executing:
 
-      sh start.sh
+      "sh start.sh"
 
-  7) Run "java -Dspring.profiles.active=dev -Dspring.config.location=../config/application.yml -jar ../bin/parser-1.0.0.jar --accesslog=../input/access.log --startDate=2017-01-01.00:00:00 --duration=daily --threshold=500" to verify that it is correctly installed.
+      or
 
-  8) Verify the result on the console or by executing the following queries on MySQL:
+      "java -Dspring.profiles.active=dev -Dspring.config.location=../config/application.yml -jar ../bin/parser-1.0.0.jar --accesslog=../input/access.log --startDate=2017-01-01.00:00:00 --duration=daily --threshold=500"
+
+  7) Verify the result on the console or by executing the following queries on MySQL:
 
     a) Login to MySQL Server.
 
@@ -60,6 +62,30 @@
         - SELECT count(0) FROM access_log;
 
         - SELECT * FROM blocked_ip;
+
+
+  Setting up Local Development Environment (Using NetBeans IDE 8.2)
+  -----------------------------------------------------------------
+
+  1) Unpack the archive to your preferred directory, e.g.:
+
+      cd /Users/rommelmedina/NetBeansProjects/wallethub
+
+      unzip parser-1.0.0-src.zip
+
+  2) A directory called "parser" will be created.
+
+  3) Open Netbeans IDE.
+
+  4) Open project by clicking Open Project under File menu.
+
+  5) Make sure to set the follwing JVM Args:
+    
+    a) -Dspring.profiles.active=dev 
+
+    b) -Dspring.config.location=src/main/resources/application.yml
+
+  6) Run Project (F6).
 
                         *** END ***
 
