@@ -5,7 +5,7 @@ spring:
     datasource:
         username: root
         password: root
-        url: jdbc:mysql://localhost:3306/REPORT
+        url: jdbc:mysql://localhost:3306/REPORT?autoReconnect=true&useSSL=false
     
     # To prevent the batch job to start automatically.
     # All configured jobs are run automatically by

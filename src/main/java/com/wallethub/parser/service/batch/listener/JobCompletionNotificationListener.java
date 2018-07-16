@@ -18,7 +18,7 @@ public class JobCompletionNotificationListener extends JobExecutionListenerSuppo
     @Override
     public void afterJob(JobExecution jobExecution) {
         logger.info("JOB {} {}",
-                jobExecution.getJobId(),
+                jobExecution.getJobInstance().getJobName().toUpperCase(),
                 jobExecution.getExitStatus().getExitCode()
         );
     }
