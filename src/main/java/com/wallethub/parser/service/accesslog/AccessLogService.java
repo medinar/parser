@@ -19,7 +19,7 @@ public interface AccessLogService {
      * @param endDate
      * @param threshold
      * @return
-     * @throws com.wallethub.exception.AccessLogServiceException
+     * @throws com.wallethub.parser.exception.AccessLogServiceException
      */
     public abstract List<String> getBlockedIpAddresses(
             String startDate,
@@ -31,7 +31,7 @@ public interface AccessLogService {
      * Parses the given file path and save it to database.
      *
      * @param path
-     * @throws com.wallethub.exception.AccessLogServiceException
+     * @throws com.wallethub.parser.exception.AccessLogServiceException
      */
     public abstract void parseAndSave(String path) throws AccessLogServiceException;
 
