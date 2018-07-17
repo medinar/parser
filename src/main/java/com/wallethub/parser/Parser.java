@@ -1,4 +1,4 @@
-package com.wallethub;
+package com.wallethub.parser;
 
 import java.util.Properties;
 import org.springframework.boot.Banner;
